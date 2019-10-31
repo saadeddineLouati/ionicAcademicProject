@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>First test page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+
+</head>
+
+<body>
+    <ion-app>
+        <ion-header translucent>
+            <ion-toolbar>
+                <ion-title>Create Account</ion-title>
+            </ion-toolbar>
+        </ion-header>
+
+        <ion-content fullscreen>
+            <ion-list lines="full" class="ion-no-margin ion-no-padding">
+                <ion-item>
+                    <ion-label position="stacked">First Name <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="stacked">Salary <ion-text color="danger">*</ion-text>
+                    </ion-label>
+                    <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+                </ion-item>
+            </ion-list>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label>Tot Salaries</ion-label>
+                            <ion-note slot="end" color="primary">99</ion-note>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label>Tot Empoyees</ion-label>
+                            <ion-note slot="end" color="primary">99</ion-note>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-alert-controller></ion-alert-controller>
+                        <ion-button expand="block">Submit</ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-alert-controller></ion-alert-controller>
+                        <ion-button expand="block">Reset</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-content>
+    </ion-app>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <script>
+        const controller = document.querySelector('ion-alert-controller');
+        const button = document.querySelector('ion-button');
+        button.addEventListener('click', handleButtonClick);
+        function handleButtonClick() {
+            controller.create({
+            header: 'Confirmation ?',
+            message: 'Are you sure that you want to continue?',
+            buttons: ['Disagree', 'Agree']
+            }).then(alert => {
+            alert.present();
+            });
+        }
+    </script>
+</body>
+
+</html>
