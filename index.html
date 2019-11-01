@@ -23,19 +23,19 @@
                 <ion-item>
                     <ion-label position="stacked">First Name <ion-text color="danger">*</ion-text>
                     </ion-label>
-                    <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+                    <ion-input required type="text" id="fname"></ion-input>
                 </ion-item>
 
                 <ion-item>
                     <ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text>
                     </ion-label>
-                    <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+                    <ion-input required type="text" id="lname"></ion-input>
                 </ion-item>
 
                 <ion-item>
                     <ion-label position="stacked">Salary <ion-text color="danger">*</ion-text>
                     </ion-label>
-                    <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+                    <ion-input required type="text" id="Salary"></ion-input>
                 </ion-item>
             </ion-list>
             <ion-grid>
@@ -64,21 +64,58 @@
                     </ion-col>
                 </ion-row>
             </ion-grid>
+            <ion-list id="ion-list">
+                <ion-list-header>
+                    Your list is here:
+                </ion-list-header>
         </ion-content>
     </ion-app>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <script>
         const controller = document.querySelector('ion-alert-controller');
+        const fname = document.querySelector('#fname');
+        const lname = document.querySelector('#lname');
+        const Salary = document.querySelector('#salary');
         const button = document.querySelector('ion-button');
         button.addEventListener('click', handleButtonClick);
         function handleButtonClick() {
             controller.create({
-            header: 'Confirmation ?',
-            message: 'Are you sure that you want to continue?',
-            buttons: ['Disagree', 'Agree']
+                header: 'Confirmation ?',
+                message: 'Are you sure that you want to continue?',
+                buttons: [{
+                    text: 'Yes',
+                    handler: () => {
+                        controller.dismiss(true);
+                        var node = document.createElement("ion-list");
+                        node.innerHTML = `
+                        <ion-item>
+                        <ion-avatar slot="start">
+                        <img src="./1s.jpg">
+                    </ion-avatar>
+                    <ion-label>
+                        <h2>Saadeddine</h2>
+                        <h3>LOUATI</h3>
+                        <p>Salary: 100,000 $</p>
+                    </ion-label>
+                    </ion-item>
+                        `;
+                        document.getElementById("ion-list").appendChild(node);
+                        return false
+                    }
+                }, {
+                    text: 'No',
+                    handler: () => {
+                        controller.dismiss(false);
+                        var node = document.createElement("LI");
+                        var textnode = document.createTextNode(fname.value);
+                        node.appendChild(textnode);
+                        document.getElementById("myList").appendChild(node);
+                        return false;
+                    }
+                }]
             }).then(alert => {
-            alert.present();
+                alert.present();
             });
         }
     </script>
