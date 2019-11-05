@@ -5,120 +5,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>First test page</title>
+    <title>Tp IONIC</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
-
 </head>
 
 <body>
     <ion-app>
         <ion-header translucent>
             <ion-toolbar>
-                <ion-title>Create Account</ion-title>
+                <ion-title>Employees Page</ion-title>
             </ion-toolbar>
         </ion-header>
 
         <ion-content fullscreen>
+            <!-- <form onsubmit="processForm(event)"> -->
             <ion-list lines="full" class="ion-no-margin ion-no-padding">
+
                 <ion-item>
-                    <ion-label position="stacked">First Name <ion-text color="danger">*</ion-text>
-                    </ion-label>
-                    <ion-input required type="text" id="fname"></ion-input>
+                    <ion-label position="floating">Name</ion-label>
+                    <ion-input id="FirstName"></ion-input>
                 </ion-item>
 
                 <ion-item>
-                    <ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text>
-                    </ion-label>
-                    <ion-input required type="text" id="lname"></ion-input>
+                    <ion-label position="floating">Age</ion-label>
+                    <ion-input id="Age"></ion-input>
                 </ion-item>
 
                 <ion-item>
-                    <ion-label position="stacked">Salary <ion-text color="danger">*</ion-text>
-                    </ion-label>
-                    <ion-input required type="text" id="Salary"></ion-input>
+                    <ion-label position="floating">Salary</ion-label>
+                    <ion-input id="Salary"></ion-input>
                 </ion-item>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <div>
+                                <ion-list>
+                                    <ion-item>
+                                        <ion-label>Salaries</ion-label>
+                                        <ion-note id="TotSalaries" slot="end" color="primary">99 </ion-note>
+                                    </ion-item>
+                                </ion-list>
+                            </div>
+                        </ion-col>
+                        <ion-col>
+                            <div>
+                                <ion-list>
+                                    <ion-item>
+                                        <ion-label>Employees</ion-label>
+                                        <ion-note slot="end" id="TotEmployees" color="secondary">99 </ion-note>
+                                    </ion-item>
+                                </ion-list>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <div class="ion-padding">
+                                <ion-button id="mybtn1" expand="block" type="submit" class="ion-no-margin"
+                                    color="success">Create</ion-button>
+                            </div>
+                        </ion-col>
+                        <ion-col>
+
+                            <div class="ion-padding">
+                                <ion-button id="mybtn2" expand="block" type="submit" class="ion-no-margin"
+                                    color="danger">Reset</ion-button>
+                            </div>
+
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+
             </ion-list>
-            <ion-grid>
-                <ion-row>
-                    <ion-col>
-                        <ion-item>
-                            <ion-label>Tot Salaries</ion-label>
-                            <ion-note slot="end" color="primary">99</ion-note>
-                        </ion-item>
-                    </ion-col>
-                    <ion-col>
-                        <ion-item>
-                            <ion-label>Tot Empoyees</ion-label>
-                            <ion-note slot="end" color="primary">99</ion-note>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col>
-                        <ion-alert-controller></ion-alert-controller>
-                        <ion-button expand="block">Submit</ion-button>
-                    </ion-col>
-                    <ion-col>
-                        <ion-alert-controller></ion-alert-controller>
-                        <ion-button expand="block">Reset</ion-button>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-            <ion-list id="ion-list">
-                <ion-list-header>
-                    Your list is here:
-                </ion-list-header>
+            <ion-list id="List" lines="full" class="ion-no-margin ion-no-padding">
+
+
+            </ion-list>
+
+
+
+            <ion-alert-controller></ion-alert-controller>
+            <ion-modal-controller id="ion-modal"></ion-modal-controller>
+
+            <!-- </form> -->
         </ion-content>
     </ion-app>
+
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
-    <script>
-        const controller = document.querySelector('ion-alert-controller');
-        const fname = document.querySelector('#fname');
-        const lname = document.querySelector('#lname');
-        const Salary = document.querySelector('#salary');
-        const button = document.querySelector('ion-button');
-        button.addEventListener('click', handleButtonClick);
-        function handleButtonClick() {
-            controller.create({
-                header: 'Confirmation ?',
-                message: 'Are you sure that you want to continue?',
-                buttons: [{
-                    text: 'Yes',
-                    handler: () => {
-                        controller.dismiss(true);
-                        var node = document.createElement("ion-list");
-                        node.innerHTML = `
-                        <ion-item>
-                        <ion-avatar slot="start">
-                        <img src="./1s.jpg">
-                    </ion-avatar>
-                    <ion-label>
-                        <h2>Saadeddine</h2>
-                        <h3>LOUATI</h3>
-                        <p>Salary: 100,000 $</p>
-                    </ion-label>
-                    </ion-item>
-                        `;
-                        document.getElementById("ion-list").appendChild(node);
-                        return false
-                    }
-                }, {
-                    text: 'No',
-                    handler: () => {
-                        controller.dismiss(false);
-                        var node = document.createElement("LI");
-                        var textnode = document.createTextNode(fname.value);
-                        node.appendChild(textnode);
-                        document.getElementById("myList").appendChild(node);
-                        return false;
-                    }
-                }]
-            }).then(alert => {
-                alert.present();
-            });
-        }
-    </script>
+    <script src="index.js"></script>
+
 </body>
 
 </html>
